@@ -1,0 +1,29 @@
+.search {
+  margin: 4rem auto;
+  max-width: 960px;
+  display: flex;
+  justify-content: center;
+}
+
+.search__input {
+  width: 50%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  padding: 10px 20px;
+  color: #333;
+  border: none;
+  background-color: white;
+  border-radius: 100px;
+  outline: none;
+  background-color: rgb(255,255,255);
+  border: 2px solid transparent;
+}
+
+.search__input:focus {
+  border: 2px solid darkslateblue;
+}
+
+.search__input:hover {
+  border: 2px solid #ddd;
+}

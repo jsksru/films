@@ -1,10 +1,10 @@
 import React from 'react';
+import './search.css';
 
 const Search = () => {
   return (
     <div className="search">
-      <input type="text" placeholder="Search by film title..."/>
-      <button type="button">Search</button>
+      <input className="search__input" type="text" placeholder="Search by film title..."/>
     </div>
   );
 }
