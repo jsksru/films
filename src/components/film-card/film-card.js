@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../api/films-api';
 
-const FilmCard = () => {
+const FilmCard = (props) => {
+  const filmId = props.id || 'tt3896198';
   const [ isLoaded, setLoaded ] = useState(false);
   const [ filmData, setFilmData ] = useState({});
 
   useEffect(() => {
-    api.getById('tt3896198')
+    api.getById(filmId)
       .then(data => {
         setLoaded(true);
         setFilmData({
