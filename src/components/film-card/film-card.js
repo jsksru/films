@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import './film-card.css';
+
 import api from '../../api/films-api';
 
 const FilmCard = (props) => {
@@ -38,17 +40,13 @@ const FilmCard = (props) => {
   const film = () => {
     return (
       <div className="film">
-        <img src={filmData.image} alt={filmData.title}/>
-        <h2>{filmData.title}</h2>
-        <p>{filmData.text}</p>
-        <ul>
-          <li>Country: {filmData.country}</li>
-          <li>Year: {filmData.year}</li>
-          <li>IMDB Rating: {filmData.rating}</li>
-          <li>Genre: {filmData.genre}</li>
-          <li>Director: {filmData.director}</li>
-          <li>Actors: {filmData.actors}</li>
-        </ul>
+        <div className="film__rating">{filmData.rating}</div>
+        <img className="film__image" src={filmData.image} alt={filmData.title}/>
+        <div className="film__info">
+          <div>{filmData.country}</div>
+          <div>{filmData.year}</div>
+        </div>
+        <h2 className="film__title">{filmData.title}</h2>
       </div>
     );
   };
