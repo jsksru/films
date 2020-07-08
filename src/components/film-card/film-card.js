@@ -1,21 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../api/films-api';
 
 const FilmCard = () => {
-  return (
-    <div className="film">
-      <img src="https://m.media-amazon.com/images/M/MV5BMzFkM2YwOTQtYzk2Mi00N2VlLWE3NTItN2YwNDg1YmY0ZDNmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg" alt="Home Alone"/>
-      <h2>Home Alone</h2>
-      <p>An eight-year-old troublemaker must protect his house from a pair of burglars when he is accidentally left home alone by his family during Christmas vacation.</p>
-      <ul>
-        <li>Country: USA</li>
-        <li>Year: 1990</li>
-        <li>IMDB Rating: 7.6</li>
-        <li>Genre: Comedy, Family</li>
-        <li>Director: Chris Columbus</li>
-        <li>Actors: Macaulay Culkin, Joe Pesci, Daniel Stern, John Heard</li>
-      </ul>
-    </div>
-  );
+  const [ isLoaded, setLoaded ] = useState(false);
+  const [ filmData, setFilmData ] = useState({});
+
+  useEffect(() => {
+    api.getById('tt3896198')
+      .then(data => {
+        setLoaded(true);
+        setFilmData({
+          title: data.Title,
+          text: data.Plot,
+          image: data.Poster,
+          country: data.Country,
+          year: parseInt(data.Year),
+          rating: parseFloat(data.imdbRating),
+          genre: data.Genre,
+          director: data.Director,
+          actors: data.Actors,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  },[]);
+
+  const loader = () => {
+    return (
+      <div className="loader">
+        Loading...
+      </div>
+    );
+  };
+
+  const film = () => {
+    return (
+      <div className="film">
+        <img src={filmData.image} alt={filmData.title}/>
+        <h2>{filmData.title}</h2>
+        <p>{filmData.text}</p>
+        <ul>
+          <li>Country: {filmData.country}</li>
+          <li>Year: {filmData.year}</li>
+          <li>IMDB Rating: {filmData.rating}</li>
+          <li>Genre: {filmData.genre}</li>
+          <li>Director: {filmData.director}</li>
+          <li>Actors: {filmData.actors}</li>
+        </ul>
+      </div>
+    );
+  };
+
+  return isLoaded ? film(): loader();
 }
 
 export default FilmCard;
