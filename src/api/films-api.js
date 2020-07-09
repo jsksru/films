@@ -15,6 +15,15 @@ class Api {
     });
     return req.data;
   }
+
+  async searchByTitle(title) {
+    const req = await this.#instance.get(null, {
+      params: {
+        t: title
+      }
+    });
+    return req.data;
+  }
 }
 
 export default new Api;
