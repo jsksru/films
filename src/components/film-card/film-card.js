@@ -23,7 +23,7 @@ const FilmCard = (props) => {
       maxWidth: '100%',
     },
     media: {
-      height: 300,
+      height: 350,
     },
   });
 
